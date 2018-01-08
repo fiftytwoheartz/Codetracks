@@ -8,16 +8,14 @@ namespace Codetracks.Core
 	{
 		private readonly InputDefinition<TArg1> _inputDefinition;
 
-		private Action<TArg1> _func;
-
 		public OneArgVoidContractDefinition(InputDefinition<TArg1> inputDefinition)
 			: base(inputDefinition)
 		{
 		}
 
-		public void Implement(Action<TArg1> func)
+		public OneArgVoidContractImplementation<TArg1> Implement(Action<TArg1> func)
 		{
-			_func = func;
+			return new OneArgVoidContractImplementation<TArg1>(_inputDefinition._arg1_predicateWithDesc, func);
 		}
 	}
 
@@ -25,7 +23,6 @@ namespace Codetracks.Core
 	{
 		private readonly Tuple<Func<TRes, bool>, string> _predicateWithDesc;
 
-		private Func<TArg1, TRes> _func;
 
 		public OneArgContractDefinition(InputDefinition<TArg1> inputDefinition, Tuple<Func<TRes, bool>, string> predicateWithDesc)
 			: base(inputDefinition)
@@ -33,9 +30,9 @@ namespace Codetracks.Core
 			_predicateWithDesc = predicateWithDesc;
 		}
 
-		public void Implement(Func<TArg1, TRes> func)
+		public OneArgContractImplementation<TArg1, TRes> Implement(Func<TArg1, TRes> func)
 		{
-			_func = func;
+			return new OneArgContractImplementation<TArg1, TRes>(InputDefinition._arg1_predicateWithDesc, _predicateWithDesc, func);
 		}
 	}
 
@@ -47,16 +44,15 @@ namespace Codetracks.Core
 	{
 		private readonly InputDefinition<TArg1, TArg2> _inputDefinition;
 
-		private Action<TArg1, TArg2> _func;
 
 		public TwoArgsVoidContractDefinition(InputDefinition<TArg1, TArg2> inputDefinition)
 			: base(inputDefinition)
 		{
 		}
 
-		public void Implement(Action<TArg1, TArg2> func)
+		public TwoArgsVoidContractImplementation<TArg1, TArg2> Implement(Action<TArg1, TArg2> func)
 		{
-			_func = func;
+			return new TwoArgsVoidContractImplementation<TArg1, TArg2>(_inputDefinition._arg1_predicateWithDesc, _inputDefinition._arg2_predicateWithDesc, func);
 		}
 	}
 
@@ -72,9 +68,9 @@ namespace Codetracks.Core
 			_predicateWithDesc = predicateWithDesc;
 		}
 
-		public void Implement(Func<TArg1, TArg2, TRes> func)
+		public TwoArgsContractImplementation<TArg1, TArg2, TRes> Implement(Func<TArg1, TArg2, TRes> func)
 		{
-			_func = func;
+			return new TwoArgsContractImplementation<TArg1, TArg2, TRes>(_inputDefinition._arg1_predicateWithDesc, _inputDefinition._arg2_predicateWithDesc, _predicateWithDesc, func);
 		}
 	}
 

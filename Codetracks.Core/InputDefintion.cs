@@ -4,7 +4,7 @@ namespace Codetracks.Core
 {
 	public class InputDefinition<TArg1>
 	{
-		private readonly Tuple<Func<TArg1, bool>, string> _arg1_predicateWithDesc;
+		public readonly Tuple<Func<TArg1, bool>, string> _arg1_predicateWithDesc;
 
 		public InputDefinition(Tuple<Func<TArg1, bool>, string> arg1_predicateWithDesc)
 		{
@@ -29,7 +29,7 @@ namespace Codetracks.Core
 
 	public class InputDefinition<TArg1, TArg2> : InputDefinition<TArg1>
 	{
-		private readonly Tuple<Func<TArg2, bool>, string> _arg2_predicateWithDesc;
+		public readonly Tuple<Func<TArg2, bool>, string> _arg2_predicateWithDesc;
 
 		public InputDefinition(
 			Tuple<Func<TArg1, bool>, string> arg1_PredicateWithDesc,
