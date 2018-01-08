@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Codetracks.Core")]
+[assembly: AssemblyTitle("Codetracks.Sandbox")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Gunvor")]
-[assembly: AssemblyProduct("Codetracks.Core")]
+[assembly: AssemblyProduct("Codetracks.Sandbox")]
 [assembly: AssemblyCopyright("Copyright © Gunvor 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("3ef71981-0716-4db8-9f67-c707c4e9f3ae")]
+[assembly: Guid("cd4000d6-4e35-4340-9e73-e6722eb50435")]
 
 // Version information for an assembly consists of the following four values:
 //
