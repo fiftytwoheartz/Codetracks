@@ -8,17 +8,15 @@ namespace Codetracks.Sandbox
 	{
 		static void Main(string[] args)
 		{
-			var shouldBePositivePredicate = Tuple.Create<Func<int, bool>, string>(i => i > 0, "Should be positive.");
-
-			var res = MethodContract
+			MethodContract
 				.Define
-				.Takes(shouldBePositivePredicate)
-				.Takes(shouldBePositivePredicate)
-				.Returns(shouldBePositivePredicate)
+				.Takes(Predicates.Int32.Positive)
+				.Takes(Predicates.Int32.Positive)
+				.Returns(Predicates.Int32.Positive)
 				.Implement((leftValue, rightValue) => leftValue + rightValue)
 				.Invoke
-					(1) // first arg
-					(1); // second arg
+					(1) // first arg meets the requirement
+					(-1); // second arg violates the requirement
 
 			Console.Read();
 		}

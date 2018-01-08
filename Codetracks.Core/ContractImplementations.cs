@@ -4,7 +4,7 @@ namespace Codetracks.Core
 {
 	#region TArg1
 
-	public class OneArgVoidContractImplementation<TArg1>
+	public class OneArgVoidContractImplementation<TArg1> : ContractImplementationBase
 	{
 		private readonly Tuple<Func<TArg1, bool>, string> _arg1_predicateWithDesc;
 
@@ -18,16 +18,12 @@ namespace Codetracks.Core
 
 		public void Invoke(TArg1 arg1)
 		{
-			if (!_arg1_predicateWithDesc.Item1(arg1))
-			{
-				throw new ArgumentException(_arg1_predicateWithDesc.Item2);
-			}
-
+			ValidatePredicateOrThrow(arg1, _arg1_predicateWithDesc);
 			_func(arg1);
 		}
 	}
 
-	public class OneArgContractImplementation<TArg1, TRes>
+	public class OneArgContractImplementation<TArg1, TRes> : ContractImplementationBase
 	{
 		private readonly Tuple<Func<TArg1, bool>, string> _arg1_predicateWithDesc;
 		private readonly Tuple<Func<TRes, bool>, string> _res_predicateWithDesc;
@@ -46,18 +42,9 @@ namespace Codetracks.Core
 
 		public TRes Invoke(TArg1 arg1)
 		{
-			if (!_arg1_predicateWithDesc.Item1(arg1))
-			{
-				throw new ArgumentException(_arg1_predicateWithDesc.Item2);
-			}
-
+			ValidatePredicateOrThrow(arg1, _arg1_predicateWithDesc);
 			var res = _func(arg1);
-
-			if (!_res_predicateWithDesc.Item1(res))
-			{
-				throw new ArgumentException(_res_predicateWithDesc.Item2);
-			}
-
+			ValidatePredicateOrThrow(res, _res_predicateWithDesc);
 			return res;
 		}
 	}
@@ -66,7 +53,7 @@ namespace Codetracks.Core
 	
 	#region TArg1, TArg2
 
-	public class TwoArgsVoidContractImplementation<TArg1, TArg2>
+	public class TwoArgsVoidContractImplementation<TArg1, TArg2> : ContractImplementationBase
 	{
 		private readonly Tuple<Func<TArg1, bool>, string> _arg1_predicateWithDesc;
 
@@ -86,24 +73,16 @@ namespace Codetracks.Core
 
 		public Action<TArg2> Invoke(TArg1 arg1)
 		{
-			if (!_arg1_predicateWithDesc.Item1(arg1))
-			{
-				throw new ArgumentException(_arg1_predicateWithDesc.Item2);
-			}
-
+			ValidatePredicateOrThrow(arg1, _arg1_predicateWithDesc);
 			return arg2 =>
 				{
-					if (!_arg2_predicateWithDesc.Item1(arg2))
-					{
-						throw new ArgumentException(_arg2_predicateWithDesc.Item2);
-					}
-
+					ValidatePredicateOrThrow(arg2, _arg2_predicateWithDesc);
 					_func(arg1, arg2);
 				};
 		}
 	}
 
-	public class TwoArgsContractImplementation<TArg1, TArg2, TRes>
+	public class TwoArgsContractImplementation<TArg1, TArg2, TRes> : ContractImplementationBase
 	{
 		private readonly Tuple<Func<TArg1, bool>, string> _arg1_predicateWithDesc;
 		private readonly Tuple<Func<TArg2, bool>, string> _arg2_predicateWithDesc;
@@ -125,25 +104,12 @@ namespace Codetracks.Core
 
 		public Func<TArg2, TRes> Invoke(TArg1 arg1)
 		{
-			if (!_arg1_predicateWithDesc.Item1(arg1))
-			{
-				throw new ArgumentException(_arg1_predicateWithDesc.Item2);
-			}
-
+			ValidatePredicateOrThrow(arg1, _arg1_predicateWithDesc);
 			return arg2 =>
 				{
-					if (!_arg2_predicateWithDesc.Item1(arg2))
-					{
-						throw new ArgumentException(_arg2_predicateWithDesc.Item2);
-					}
-
+					ValidatePredicateOrThrow(arg2, _arg2_predicateWithDesc);
 					var res = _func(arg1, arg2);
-
-					if (!_res_predicateWithDesc.Item1(res))
-					{
-						throw new ArgumentException(_res_predicateWithDesc.Item2);
-					}
-
+					ValidatePredicateOrThrow(res, _res_predicateWithDesc);
 					return res;
 				};
 		}
