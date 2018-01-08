@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContractImplementation.cs" />
     <Compile Include="MethodContract.cs" />
     <Compile Include="OneArgContractDefinition.cs" />
     <Compile Include="InputDefinitionOwner.cs" />
