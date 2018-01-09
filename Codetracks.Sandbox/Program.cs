@@ -16,9 +16,9 @@ namespace Codetracks.Sandbox
 					MethodContract
 						.Define
                         .Takes(Predicates.Define<int>(arg => arg > 0, $"expected number more than 0")
-                            .And(arg => arg < 100, "expected number less than 100").TupleDefinition)
+                            .And(arg => arg < 100, "expected number less than 100").AsTuple)
                         .Takes(Predicates.Define<int>(arg => arg < 0, "expected number less than 0")
-                            .Or(arg => arg > 100, "expected number more than 100").TupleDefinition)
+                            .Or(arg => arg > 100, "expected number more than 100").AsTuple)
 						.Returns(Predicates.Int32.Positive)
 						.Implement((leftValue, rightValue) => leftValue + rightValue)
 						.Invoke
