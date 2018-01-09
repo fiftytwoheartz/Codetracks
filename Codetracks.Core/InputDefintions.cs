@@ -12,22 +12,22 @@ namespace Codetracks.Core {
 
     public class InputDefinition<TArg1> {
 
-        public readonly IPredicateDefinition<TArg1> Current;
+        public readonly PredicateDefinitionBase<TArg1> Current;
 
         public InputDefinition(
-            IPredicateDefinition<TArg1> current) {
+            PredicateDefinitionBase<TArg1> current) {
             Current = current;
         }
 
         public InputDefinition<TArg1, TArg2> SecondParameter<TArg2>(
-            IPredicateDefinition<TArg2> arg2Predicate) {
+            PredicateDefinitionBase<TArg2> arg2Predicate) {
             return new InputDefinition<TArg1, TArg2>(
                 this,
                 arg2Predicate);
         }
 
         public OneArgContractDefinition<TArg1, TRes> Returns<TRes>(
-            IPredicateDefinition<TRes> resultPredicateWithDesc = null) {
+            PredicateDefinitionBase<TRes> resultPredicateWithDesc = null) {
             return new OneArgContractDefinition<TArg1, TRes>(
                 this,
                 resultPredicateWithDesc ?? Predicates.AlwaysTrue<TRes>());
@@ -45,11 +45,11 @@ namespace Codetracks.Core {
 
     public class InputDefinition<TArg1, TArg2> {
 
-        public readonly IPredicateDefinition<TArg2> Current;
+        public readonly PredicateDefinitionBase<TArg2> Current;
 
         public InputDefinition(
             InputDefinition<TArg1> parent,
-            IPredicateDefinition<TArg2> current) {
+            PredicateDefinitionBase<TArg2> current) {
             Parent = parent;
             Current = current;
         }
@@ -57,14 +57,14 @@ namespace Codetracks.Core {
         public InputDefinition<TArg1> Parent { get; }
 
         public InputDefinition<TArg1, TArg2, TArg3> ThrirdParameter<TArg3>(
-            IPredicateDefinition<TArg3> arg3Predicate) {
+            PredicateDefinitionBase<TArg3> arg3Predicate) {
             return new InputDefinition<TArg1, TArg2, TArg3>(
                 this,
                 arg3Predicate);
         }
 
         public TwoArgsContractDefinition<TArg1, TArg2, TRes> Returns<TRes>(
-            IPredicateDefinition<TRes> resultPredicateWithDesc = null) {
+            PredicateDefinitionBase<TRes> resultPredicateWithDesc = null) {
             return new TwoArgsContractDefinition<TArg1, TArg2, TRes>(
                 this,
                 resultPredicateWithDesc ?? Predicates.AlwaysTrue<TRes>());
@@ -82,11 +82,11 @@ namespace Codetracks.Core {
 
     public class InputDefinition<TArg1, TArg2, TArg3> {
 
-        public readonly IPredicateDefinition<TArg3> Current;
+        public readonly PredicateDefinitionBase<TArg3> Current;
 
         public InputDefinition(
             InputDefinition<TArg1, TArg2> parent,
-            IPredicateDefinition<TArg3> current) {
+            PredicateDefinitionBase<TArg3> current) {
             Parent = parent;
             Current = current;
         }
@@ -94,7 +94,7 @@ namespace Codetracks.Core {
         public InputDefinition<TArg1, TArg2> Parent { get; }
 
         public ThreeArgsContractDefinition<TArg1, TArg2, TArg3, TRes> Returns<TRes>(
-            IPredicateDefinition<TRes> resultPredicateWithDesc = null) {
+            PredicateDefinitionBase<TRes> resultPredicateWithDesc = null) {
             return new ThreeArgsContractDefinition<TArg1, TArg2, TArg3, TRes>(
                 this,
                 resultPredicateWithDesc ?? Predicates.AlwaysTrue<TRes>());

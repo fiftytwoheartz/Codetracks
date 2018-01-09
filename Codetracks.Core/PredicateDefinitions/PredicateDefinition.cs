@@ -2,42 +2,32 @@
 
 namespace Codetracks.Core.PredicateDefinitions {
 
-    public class PredicateDefinition<T> : IPredicateDefinition<T> {
-
-        private readonly Func<T, bool> _predicate;
+    public class PredicateDefinition<T> : PredicateDefinitionBase<T> {
 
         internal PredicateDefinition(
             Func<T, bool> predicate,
-            string description) {
-            _predicate = predicate;
-            Description = description;
-        }
+            string description) : base(
+            predicate,
+            description) { }
 
-        public IPredicateDefinition<T> And(
-            IPredicateDefinition<T> predicateDefinition) {
+        public override PredicateDefinitionBase<T> And(
+            PredicateDefinitionBase<T> predicateDefinition) {
             return new PredicateDefinition<T>(
                 arg => _predicate(arg) && predicateDefinition.Eval(arg),
                 Description + "---AND---" + predicateDefinition.Description);
         }
 
-        public IPredicateDefinition<T> Or(
-            IPredicateDefinition<T> predicateDefinition) {
+        public override PredicateDefinitionBase<T> Or(
+            PredicateDefinitionBase<T> predicateDefinition) {
             return new PredicateDefinition<T>(
                 arg => _predicate(arg) || predicateDefinition.Eval(arg),
                 Description + "---OR---" + predicateDefinition.Description);
         }
 
-        public IPredicateDefinition<T> Not() {
+        public override PredicateDefinitionBase<T> Not() {
             return new PredicateDefinition<T>(
                 arg => !_predicate(arg),
                 "[---NOT---] " + Description);
-        }
-
-        public string Description { get; }
-
-        public bool Eval(
-            T parameter) {
-            return _predicate(parameter);
         }
 
     }

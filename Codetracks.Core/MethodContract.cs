@@ -12,7 +12,7 @@ namespace Codetracks.Core {
         public static MethodContract Define { get; } = new MethodContract();
 
         public InputDefinition<TArg1> FirstParameter<TArg1>(
-            IPredicateDefinition<TArg1> predicateWithDesc) {
+            PredicateDefinitionBase<TArg1> predicateWithDesc) {
             return new InputDefinition<TArg1>(predicateWithDesc);
         }
 

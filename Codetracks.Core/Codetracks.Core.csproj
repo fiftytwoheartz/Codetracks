@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="ContractImplementations.cs" />
     <Compile Include="ContractImplementationBase.cs" />
-    <Compile Include="PredicateDefinitions\IPredicateDefinition.cs" />
+    <Compile Include="PredicateDefinitions\PredicateDefinitionBase.cs" />
     <Compile Include="MethodContract.cs" />
     <Compile Include="ContractDefinitions.cs" />
     <Compile Include="InputDefinitionOwners.cs" />

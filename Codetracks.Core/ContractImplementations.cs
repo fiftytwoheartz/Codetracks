@@ -13,12 +13,12 @@ namespace Codetracks.Core {
 
     public class OneArgVoidContractImplementation<TArg1> : ContractImplementationBase {
 
-        private readonly IPredicateDefinition<TArg1> _arg1_predicateWithDesc;
+        private readonly PredicateDefinitionBase<TArg1> _arg1_predicateWithDesc;
 
         private readonly Action<TArg1> _func;
 
         internal OneArgVoidContractImplementation(
-            IPredicateDefinition<TArg1> arg1_predicateWithDesc,
+            PredicateDefinitionBase<TArg1> arg1_predicateWithDesc,
             Action<TArg1> func) {
             _arg1_predicateWithDesc = arg1_predicateWithDesc;
             _func = func;
@@ -37,15 +37,15 @@ namespace Codetracks.Core {
 
     public class OneArgContractImplementation<TArg1, TRes> : ContractImplementationBase {
 
-        private readonly IPredicateDefinition<TArg1> _arg1_predicateWithDesc;
+        private readonly PredicateDefinitionBase<TArg1> _arg1_predicateWithDesc;
 
         private readonly Func<TArg1, TRes> _func;
 
-        private readonly IPredicateDefinition<TRes> _res_predicateWithDesc;
+        private readonly PredicateDefinitionBase<TRes> _res_predicateWithDesc;
 
         internal OneArgContractImplementation(
-            IPredicateDefinition<TArg1> arg1_predicateWithDesc,
-            IPredicateDefinition<TRes> res_predicateWithDesc,
+            PredicateDefinitionBase<TArg1> arg1_predicateWithDesc,
+            PredicateDefinitionBase<TRes> res_predicateWithDesc,
             Func<TArg1, TRes> func) {
             _arg1_predicateWithDesc = arg1_predicateWithDesc;
             _res_predicateWithDesc = res_predicateWithDesc;
@@ -74,15 +74,15 @@ namespace Codetracks.Core {
 
     public class TwoArgsVoidContractImplementation<TArg1, TArg2> : ContractImplementationBase {
 
-        private readonly IPredicateDefinition<TArg1> _arg1_predicateWithDesc;
+        private readonly PredicateDefinitionBase<TArg1> _arg1_predicateWithDesc;
 
-        private readonly IPredicateDefinition<TArg2> _arg2_predicateWithDesc;
+        private readonly PredicateDefinitionBase<TArg2> _arg2_predicateWithDesc;
 
         private readonly Action<TArg1, TArg2> _func;
 
         internal TwoArgsVoidContractImplementation(
-            IPredicateDefinition<TArg1> arg1_predicateWithDesc,
-            IPredicateDefinition<TArg2> arg2_predicateWithDesc,
+            PredicateDefinitionBase<TArg1> arg1_predicateWithDesc,
+            PredicateDefinitionBase<TArg2> arg2_predicateWithDesc,
             Action<TArg1, TArg2> func) {
             _arg1_predicateWithDesc = arg1_predicateWithDesc;
             _arg2_predicateWithDesc = arg2_predicateWithDesc;
@@ -110,18 +110,18 @@ namespace Codetracks.Core {
 
     public class TwoArgsContractImplementation<TArg1, TArg2, TRes> : ContractImplementationBase {
 
-        private readonly IPredicateDefinition<TArg1> _arg1_predicateWithDesc;
+        private readonly PredicateDefinitionBase<TArg1> _arg1_predicateWithDesc;
 
-        private readonly IPredicateDefinition<TArg2> _arg2_predicateWithDesc;
+        private readonly PredicateDefinitionBase<TArg2> _arg2_predicateWithDesc;
 
         private readonly Func<TArg1, TArg2, TRes> _func;
 
-        private readonly IPredicateDefinition<TRes> _res_predicateWithDesc;
+        private readonly PredicateDefinitionBase<TRes> _res_predicateWithDesc;
 
         internal TwoArgsContractImplementation(
-            IPredicateDefinition<TArg1> arg1_predicateWithDesc,
-            IPredicateDefinition<TArg2> arg2_predicateWithDesc,
-            IPredicateDefinition<TRes> res_predicateWithDesc,
+            PredicateDefinitionBase<TArg1> arg1_predicateWithDesc,
+            PredicateDefinitionBase<TArg2> arg2_predicateWithDesc,
+            PredicateDefinitionBase<TRes> res_predicateWithDesc,
             Func<TArg1, TArg2, TRes> func) {
             _arg1_predicateWithDesc = arg1_predicateWithDesc;
             _arg2_predicateWithDesc = arg2_predicateWithDesc;
@@ -159,18 +159,18 @@ namespace Codetracks.Core {
 
     public class ThreeArgsVoidContractImplementation<TArg1, TArg2, TArg3> : ContractImplementationBase {
 
-        private readonly IPredicateDefinition<TArg1> _arg1_predicateWithDesc;
+        private readonly PredicateDefinitionBase<TArg1> _arg1_predicateWithDesc;
 
-        private readonly IPredicateDefinition<TArg2> _arg2_predicateWithDesc;
+        private readonly PredicateDefinitionBase<TArg2> _arg2_predicateWithDesc;
 
-        private readonly IPredicateDefinition<TArg3> _arg3_predicateWithDesc;
+        private readonly PredicateDefinitionBase<TArg3> _arg3_predicateWithDesc;
 
         private readonly Action<TArg1, TArg2, TArg3> _func;
 
         internal ThreeArgsVoidContractImplementation(
-            IPredicateDefinition<TArg1> arg1_predicateWithDesc,
-            IPredicateDefinition<TArg2> arg2_predicateWithDesc,
-            IPredicateDefinition<TArg3> arg3_predicateWithDesc,
+            PredicateDefinitionBase<TArg1> arg1_predicateWithDesc,
+            PredicateDefinitionBase<TArg2> arg2_predicateWithDesc,
+            PredicateDefinitionBase<TArg3> arg3_predicateWithDesc,
             Action<TArg1, TArg2, TArg3> func) {
             _arg1_predicateWithDesc = arg1_predicateWithDesc;
             _arg2_predicateWithDesc = arg2_predicateWithDesc;
@@ -206,21 +206,21 @@ namespace Codetracks.Core {
 
     public class ThreeArgsContractImplementation<TArg1, TArg2, TArg3, TRes> : ContractImplementationBase {
 
-        private readonly IPredicateDefinition<TArg1> _arg1_predicateWithDesc;
+        private readonly PredicateDefinitionBase<TArg1> _arg1_predicateWithDesc;
 
-        private readonly IPredicateDefinition<TArg2> _arg2_predicateWithDesc;
+        private readonly PredicateDefinitionBase<TArg2> _arg2_predicateWithDesc;
 
-        private readonly IPredicateDefinition<TArg3> _arg3_predicateWithDesc;
+        private readonly PredicateDefinitionBase<TArg3> _arg3_predicateWithDesc;
 
         private readonly Func<TArg1, TArg2, TArg3, TRes> _func;
 
-        private readonly IPredicateDefinition<TRes> _res_predicateWithDesc;
+        private readonly PredicateDefinitionBase<TRes> _res_predicateWithDesc;
 
         internal ThreeArgsContractImplementation(
-            IPredicateDefinition<TArg1> arg1_predicateWithDesc,
-            IPredicateDefinition<TArg2> arg2_predicateWithDesc,
-            IPredicateDefinition<TArg3> arg3_predicateWithDesc,
-            IPredicateDefinition<TRes> res_predicateWithDesc,
+            PredicateDefinitionBase<TArg1> arg1_predicateWithDesc,
+            PredicateDefinitionBase<TArg2> arg2_predicateWithDesc,
+            PredicateDefinitionBase<TArg3> arg3_predicateWithDesc,
+            PredicateDefinitionBase<TRes> res_predicateWithDesc,
             Func<TArg1, TArg2, TArg3, TRes> func) {
             _arg1_predicateWithDesc = arg1_predicateWithDesc;
             _arg2_predicateWithDesc = arg2_predicateWithDesc;

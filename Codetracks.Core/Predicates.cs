@@ -9,7 +9,7 @@ namespace Codetracks.Core {
     /// </summary>
     public static class Predicates {
 
-        public static IPredicateDefinition<T> Define<T>(
+        public static PredicateDefinitionBase<T> Define<T>(
             Func<T, bool> func,
             string description) {
             return new PredicateDefinition<T>(
@@ -17,7 +17,7 @@ namespace Codetracks.Core {
                 description);
         }
 
-        public static IPredicateDefinition<TRes> AlwaysTrue<TRes>() {
+        public static PredicateDefinitionBase<TRes> AlwaysTrue<TRes>() {
             return new PredicateDefinition<TRes>(
                 res => true,
                 string.Empty);
@@ -25,11 +25,11 @@ namespace Codetracks.Core {
 
         public static class Int32 {
 
-            public static IPredicateDefinition<int> Positive => new PredicateDefinition<int>(
+            public static PredicateDefinitionBase<int> Positive => new PredicateDefinition<int>(
                 arg => arg >= 0,
                 $"Expected positive {nameof(Int32)}.");
 
-            public static IPredicateDefinition<int> Negative => new PredicateDefinition<int>(
+            public static PredicateDefinitionBase<int> Negative => new PredicateDefinition<int>(
                 arg => arg < 0,
                 $"Expected negative {nameof(Int32)}.");
 

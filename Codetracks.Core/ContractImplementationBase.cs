@@ -9,7 +9,7 @@ namespace Codetracks.Core {
         protected static void ValidatePredicateOrThrow<TArg>(
             byte argIndex,
             TArg arg,
-            IPredicateDefinition<TArg> predicate) {
+            PredicateDefinitionBase<TArg> predicate) {
             if (!predicate.Eval(arg))
                 throw new ArgumentException(
                     $"Predicate violated with value '{arg}'{DecideWhetherIndexHasToBeSpecified(argIndex)} of type '{typeof(TArg).FullName}'.\r\n" +
