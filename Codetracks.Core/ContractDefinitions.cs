@@ -1,80 +1,136 @@
 ﻿using System;
 
-namespace Codetracks.Core
-{
-	#region TArg1
+namespace Codetracks.Core {
 
-	public class OneArgVoidContractDefinition<TArg1> : InputDefinitionOwner<TArg1>
-	{
-		private readonly InputDefinition<TArg1> _inputDefinition;
+    /*
+     * Represents a well-defined, but not yet implemented contract.
+     * This is the last step before the contract becomes pratically usable: 
+     * as soon as implementation provided, contract could be invoked frow wherever one wishes.
+     */
 
-		public OneArgVoidContractDefinition(InputDefinition<TArg1> arg1Definition)
-			: base(arg1Definition)
-		{
-		}
+    #region TArg1
 
-		public OneArgVoidContractImplementation<TArg1> Implement(Action<TArg1> func)
-		{
-			return new OneArgVoidContractImplementation<TArg1>(_inputDefinition.Arg1Predicate, func);
-		}
-	}
+    public class OneArgVoidContractDefinition<TArg1> : InputDefinitionOwner<TArg1> {
 
-	public class OneArgContractDefinition<TArg1, TRes> : InputDefinitionOwner<TArg1>
-	{
-		private readonly Tuple<Func<TRes, bool>, string> _predicateWithDesc;
+        internal OneArgVoidContractDefinition(
+            InputDefinition<TArg1> inputDefinition)
+            : base(inputDefinition) { }
 
+        public OneArgVoidContractImplementation<TArg1> Implement(
+            Action<TArg1> func) {
+            return new OneArgVoidContractImplementation<TArg1>(
+                _inputDefinition.Arg1Predicate,
+                func);
+        }
 
-		public OneArgContractDefinition(InputDefinition<TArg1> arg1Definition, Tuple<Func<TRes, bool>, string> predicateWithDesc)
-			: base(arg1Definition)
-		{
-			_predicateWithDesc = predicateWithDesc;
-		}
+    }
 
-		public OneArgContractImplementation<TArg1, TRes> Implement(Func<TArg1, TRes> func)
-		{
-			return new OneArgContractImplementation<TArg1, TRes>(Arg1Definition.Arg1Predicate, _predicateWithDesc, func);
-		}
-	}
+    public class OneArgContractDefinition<TArg1, TRes> : InputDefinitionOwner<TArg1> {
 
-	#endregion
-	
-	#region TArg1, TArg2
+        private readonly Tuple<Func<TRes, bool>, string> _resultPredicateWithDesc;
 
-	public class TwoArgsVoidContractDefinition<TArg1, TArg2> : InputDefinitionOwner<TArg1, TArg2>
-	{
-		private readonly InputDefinition<TArg1, TArg2> _inputDefinition;
+        internal OneArgContractDefinition(
+            InputDefinition<TArg1> inputDefinition,
+            Tuple<Func<TRes, bool>, string> resultPredicateWithDesc)
+            : base(inputDefinition) {
+            _resultPredicateWithDesc = resultPredicateWithDesc;
+        }
 
+        public OneArgContractImplementation<TArg1, TRes> Implement(
+            Func<TArg1, TRes> func) {
+            return new OneArgContractImplementation<TArg1, TRes>(
+                _inputDefinition.Arg1Predicate,
+                _resultPredicateWithDesc,
+                func);
+        }
 
-		public TwoArgsVoidContractDefinition(InputDefinition<TArg1, TArg2> arg2Definition)
-			: base(arg2Definition)
-		{
-		}
+    }
 
-		public TwoArgsVoidContractImplementation<TArg1, TArg2> Implement(Action<TArg1, TArg2> func)
-		{
-			return new TwoArgsVoidContractImplementation<TArg1, TArg2>(_inputDefinition.Arg1Predicate, _inputDefinition.Arg2Predicate, func);
-		}
-	}
+    #endregion
 
-	public class TwoArgsContractDefinition<TArg1, TArg2, TRes> : InputDefinitionOwner<TArg1, TArg2>
-	{
-		private readonly Tuple<Func<TRes, bool>, string> _predicateWithDesc;
+    #region TArg1, TArg2
 
-		private Func<TArg1, TArg2, TRes> _func;
+    public class TwoArgsVoidContractDefinition<TArg1, TArg2> : InputDefinitionOwner<TArg1, TArg2> {
 
-		public TwoArgsContractDefinition(InputDefinition<TArg1, TArg2> arg2Definition, Tuple<Func<TRes, bool>, string> predicateWithDesc)
-			: base(arg2Definition)
-		{
-			_predicateWithDesc = predicateWithDesc;
-		}
+        internal TwoArgsVoidContractDefinition(
+            InputDefinition<TArg1, TArg2> inputDefinition)
+            : base(inputDefinition) { }
 
-		public TwoArgsContractImplementation<TArg1, TArg2, TRes> Implement(Func<TArg1, TArg2, TRes> func)
-		{
-			return new TwoArgsContractImplementation<TArg1, TArg2, TRes>(Arg2Definition.Arg1Predicate, Arg2Definition.Arg2Predicate, _predicateWithDesc, func);
-		}
-	}
+        public TwoArgsVoidContractImplementation<TArg1, TArg2> Implement(
+            Action<TArg1, TArg2> func) {
+            return new TwoArgsVoidContractImplementation<TArg1, TArg2>(
+                _inputDefinition.Arg1Predicate,
+                _inputDefinition.Arg2Predicate,
+                func);
+        }
 
-	#endregion
+    }
 
+    public class TwoArgsContractDefinition<TArg1, TArg2, TRes> : InputDefinitionOwner<TArg1, TArg2> {
+
+        private readonly Tuple<Func<TRes, bool>, string> _resultPredicateWithDesc;
+
+        internal TwoArgsContractDefinition(
+            InputDefinition<TArg1, TArg2> inputDefinition,
+            Tuple<Func<TRes, bool>, string> resultPredicateWithDesc)
+            : base(inputDefinition) {
+            _resultPredicateWithDesc = resultPredicateWithDesc;
+        }
+
+        public TwoArgsContractImplementation<TArg1, TArg2, TRes> Implement(
+            Func<TArg1, TArg2, TRes> func) {
+            return new TwoArgsContractImplementation<TArg1, TArg2, TRes>(
+                _inputDefinition.Arg1Predicate,
+                _inputDefinition.Arg2Predicate,
+                _resultPredicateWithDesc,
+                func);
+        }
+
+    }
+
+    #endregion
+
+    #region TArg1, TArg2, TArg3
+
+    public class ThreeArgsVoidContractDefinition<TArg1, TArg2, TArg3> : InputDefinitionOwner<TArg1, TArg2, TArg3> {
+
+        internal ThreeArgsVoidContractDefinition(
+            InputDefinition<TArg1, TArg2, TArg3> inputDefinition)
+            : base(inputDefinition) { }
+
+        public TwoArgsVoidContractImplementation<TArg1, TArg2> Implement(
+            Action<TArg1, TArg2> func) {
+            return new TwoArgsVoidContractImplementation<TArg1, TArg2>(
+                _inputDefinition.Arg1Predicate,
+                _inputDefinition.Arg2Predicate,
+                func);
+        }
+
+    }
+
+    public class ThreeArgsContractDefinition<TArg1, TArg2, TArg3, TRes> : InputDefinitionOwner<TArg1, TArg2, TArg3> {
+
+        private readonly Tuple<Func<TRes, bool>, string> _resultPredicateWithDesc;
+
+        internal ThreeArgsContractDefinition(
+            InputDefinition<TArg1, TArg2, TArg3> inputDefinition,
+            Tuple<Func<TRes, bool>, string> resultPredicateWithDesc)
+            : base(inputDefinition) {
+            _resultPredicateWithDesc = resultPredicateWithDesc;
+        }
+
+        public ThreeArgsContractImplementation<TArg1, TArg2, TArg3, TRes> Implement(
+            Func<TArg1, TArg2, TArg3, TRes> func) {
+            return new ThreeArgsContractImplementation<TArg1, TArg2, TArg3, TRes>(
+                _inputDefinition.Arg1Predicate,
+                _inputDefinition.Arg2Predicate,
+                _inputDefinition.Arg3Predicate,
+                _resultPredicateWithDesc,
+                func);
+        }
+
+    }
+
+    #endregion
 
 }

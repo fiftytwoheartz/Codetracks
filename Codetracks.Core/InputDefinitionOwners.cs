@@ -1,23 +1,36 @@
-﻿namespace Codetracks.Core
-{
-	public abstract class InputDefinitionOwner<TArg1>
-	{
-		public readonly InputDefinition<TArg1> Arg1Definition;
+﻿namespace Codetracks.Core {
 
-		protected InputDefinitionOwner(InputDefinition<TArg1> arg1Definition)
-		{
-			Arg1Definition = arg1Definition;
-		}
-	}
+    public abstract class InputDefinitionOwner<TArg1> {
 
-	public abstract class InputDefinitionOwner<TArg1, TArg2>
-	{
-		public readonly InputDefinition<TArg1, TArg2> Arg2Definition;
+        protected readonly InputDefinition<TArg1> _inputDefinition;
 
-		protected InputDefinitionOwner(
-			InputDefinition<TArg1, TArg2> arg2Definition)
-		{
-			Arg2Definition = arg2Definition;
-		}
-	}
+        protected InputDefinitionOwner(
+            InputDefinition<TArg1> inputDefinition) {
+            _inputDefinition = inputDefinition;
+        }
+
+    }
+
+    public abstract class InputDefinitionOwner<TArg1, TArg2> {
+
+        protected readonly InputDefinition<TArg1, TArg2> _inputDefinition;
+
+        protected InputDefinitionOwner(
+            InputDefinition<TArg1, TArg2> inputDefinition) {
+            _inputDefinition = inputDefinition;
+        }
+
+    }
+
+    public abstract class InputDefinitionOwner<TArg1, TArg2, TArg3> {
+
+        protected readonly InputDefinition<TArg1, TArg2, TArg3> _inputDefinition;
+
+        protected InputDefinitionOwner(
+            InputDefinition<TArg1, TArg2, TArg3> inputDefinition) {
+            _inputDefinition = inputDefinition;
+        }
+
+    }
+
 }
