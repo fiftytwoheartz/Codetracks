@@ -15,13 +15,15 @@ namespace Codetracks.Sandbox
 				var res = 
 					MethodContract
 						.Define
-						.Takes(Predicates.Int32.Positive)
-						.Takes(Predicates.Int32.Positive)
+                        .Takes(Predicates.Define<int>(arg => arg > 0, $"expected number more than 0")
+                            .And(arg => arg < 100, "expected number less than 100").TupleDefinition)
+                        .Takes(Predicates.Define<int>(arg => arg < 0, "expected number less than 0")
+                            .Or(arg => arg > 100, "expected number more than 100").TupleDefinition)
 						.Returns(Predicates.Int32.Positive)
 						.Implement((leftValue, rightValue) => leftValue + rightValue)
 						.Invoke
-							(1) // first arg meets the requirement
-							(-1); // second arg violates the requirement
+							(-1) // first arg violates the requirement
+                            (101); // second arg violates the requirement
 
 				message = res.ToString();
 			}

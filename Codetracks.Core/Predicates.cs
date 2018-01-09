@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Codetracks.Core.PredicateDefinition;
+using System;
 
 namespace Codetracks.Core
 {
@@ -10,5 +11,9 @@ namespace Codetracks.Core
 			public static Tuple<Func<int, bool>, string> Negative => Tuple.Create<Func<int, bool>, string>(arg => arg < 0, $"Expected negative {nameof(Int32)}.");
 		}
 
+        public static IPredicateDefinition<T> Define<T>(Func<T, bool> func, string exceptionMessage)
+        {
+            return PredicateDefinition<T>.Create(func, exceptionMessage);
+        }
 	}
 }
