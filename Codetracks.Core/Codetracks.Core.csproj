@@ -40,9 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PredicateDefinitions\AndPredicateDefinition.cs" />
-    <Compile Include="PredicateDefinitions\BinaryPredicateDefinition.cs" />
-    <Compile Include="PredicateDefinitions\CompositePredicateDefinition.cs" />
     <Compile Include="ContractImplementations.cs" />
     <Compile Include="ContractImplementationBase.cs" />
     <Compile Include="PredicateDefinitions\IPredicateDefinition.cs" />
@@ -50,7 +47,6 @@
     <Compile Include="ContractDefinitions.cs" />
     <Compile Include="InputDefinitionOwners.cs" />
     <Compile Include="InputDefintions.cs" />
-    <Compile Include="PredicateDefinitions\OrPredicateDefinition.cs" />
     <Compile Include="PredicateDefinitions\PredicateDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Predicates.cs" />
