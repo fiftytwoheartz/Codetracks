@@ -11,11 +11,11 @@ namespace Codetracks.Core {
 
         public static class Int32 {
 
-            public static Tuple<Func<int, bool>, string> Positive => Tuple.Create<Func<int, bool>, string>(
+            public static IPredicateDefinition<int> Positive => new PredicateDefinition<int>(
                 arg => arg >= 0,
                 $"Expected positive {nameof(Int32)}.");
 
-            public static Tuple<Func<int, bool>, string> Negative => Tuple.Create<Func<int, bool>, string>(
+            public static IPredicateDefinition<int> Negative => new PredicateDefinition<int>(
                 arg => arg < 0,
                 $"Expected negative {nameof(Int32)}.");
 
@@ -25,5 +25,11 @@ namespace Codetracks.Core {
         {
             return new PredicateDefinition<T>(func, description);
         }
-	}
+
+        public static IPredicateDefinition<TRes> AlwaysTrue<TRes>() {
+            return new PredicateDefinition<TRes>(res => true, string.Empty);
+
+        }
+
+    }
 }

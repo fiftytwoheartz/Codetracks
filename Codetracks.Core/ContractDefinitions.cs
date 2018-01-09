@@ -1,5 +1,7 @@
 ﻿using System;
 
+using Codetracks.Core.PredicateDefinitions;
+
 namespace Codetracks.Core {
 
     /*
@@ -27,11 +29,11 @@ namespace Codetracks.Core {
 
     public class OneArgContractDefinition<TArg1, TRes> : InputDefinitionOwner<TArg1> {
 
-        private readonly Tuple<Func<TRes, bool>, string> _resultPredicateWithDesc;
+        private readonly IPredicateDefinition<TRes> _resultPredicateWithDesc;
 
         internal OneArgContractDefinition(
             InputDefinition<TArg1> inputDefinition,
-            Tuple<Func<TRes, bool>, string> resultPredicateWithDesc)
+            IPredicateDefinition<TRes> resultPredicateWithDesc)
             : base(inputDefinition) {
             _resultPredicateWithDesc = resultPredicateWithDesc;
         }
@@ -68,11 +70,11 @@ namespace Codetracks.Core {
 
     public class TwoArgsContractDefinition<TArg1, TArg2, TRes> : InputDefinitionOwner<TArg1, TArg2> {
 
-        private readonly Tuple<Func<TRes, bool>, string> _resultPredicateWithDesc;
+        private readonly IPredicateDefinition<TRes> _resultPredicateWithDesc;
 
         internal TwoArgsContractDefinition(
             InputDefinition<TArg1, TArg2> inputDefinition,
-            Tuple<Func<TRes, bool>, string> resultPredicateWithDesc)
+            IPredicateDefinition<TRes> resultPredicateWithDesc)
             : base(inputDefinition) {
             _resultPredicateWithDesc = resultPredicateWithDesc;
         }
@@ -110,11 +112,11 @@ namespace Codetracks.Core {
 
     public class ThreeArgsContractDefinition<TArg1, TArg2, TArg3, TRes> : InputDefinitionOwner<TArg1, TArg2, TArg3> {
 
-        private readonly Tuple<Func<TRes, bool>, string> _resultPredicateWithDesc;
+        private readonly IPredicateDefinition<TRes> _resultPredicateWithDesc;
 
         internal ThreeArgsContractDefinition(
             InputDefinition<TArg1, TArg2, TArg3> inputDefinition,
-            Tuple<Func<TRes, bool>, string> resultPredicateWithDesc)
+            IPredicateDefinition<TRes> resultPredicateWithDesc)
             : base(inputDefinition) {
             _resultPredicateWithDesc = resultPredicateWithDesc;
         }

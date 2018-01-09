@@ -1,5 +1,7 @@
 ﻿using System;
 
+using Codetracks.Core.PredicateDefinitions;
+
 namespace Codetracks.Core {
 
     /// <summary>
@@ -12,7 +14,7 @@ namespace Codetracks.Core {
         public static MethodContract Define { get; } = new MethodContract();
 
         public InputDefinition<TArg1> FirstParameter<TArg1>(
-            Tuple<Func<TArg1, bool>, string> predicateWithDesc) {
+            IPredicateDefinition<TArg1> predicateWithDesc) {
             return new InputDefinition<TArg1>(predicateWithDesc);
         }
 

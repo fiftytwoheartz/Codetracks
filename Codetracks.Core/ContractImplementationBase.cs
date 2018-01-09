@@ -1,5 +1,7 @@
 ﻿using System;
 
+using Codetracks.Core.PredicateDefinitions;
+
 namespace Codetracks.Core {
 
     public class ContractImplementationBase {
@@ -7,11 +9,11 @@ namespace Codetracks.Core {
         protected static void ValidatePredicateOrThrow<TArg>(
             byte argIndex,
             TArg arg,
-            Tuple<Func<TArg, bool>, string> predicate) {
-            if (!predicate.Item1(arg))
+            IPredicateDefinition<TArg> predicate) {
+            if (!predicate.Eval(arg))
                 throw new ArgumentException(
                     $"Predicate violated with value '{arg}'{DecideWhetherIndexHasToBeSpecified(argIndex)} of type '{typeof(TArg).FullName}'.\r\n" +
-                    $"Details: '{predicate.Item2}'.");
+                    $"Details: '{predicate.Description}'.");
         }
 
         /// <summary>

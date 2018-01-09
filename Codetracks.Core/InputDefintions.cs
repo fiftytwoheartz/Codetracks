@@ -1,5 +1,7 @@
 ﻿using System;
 
+using Codetracks.Core.PredicateDefinitions;
+
 namespace Codetracks.Core {
 
     /*
@@ -12,27 +14,25 @@ namespace Codetracks.Core {
 
     public class InputDefinition<TArg1> {
 
-        public readonly Tuple<Func<TArg1, bool>, string> Current;
+        public readonly IPredicateDefinition<TArg1> Current;
 
         public InputDefinition(
-            Tuple<Func<TArg1, bool>, string> current) {
+            IPredicateDefinition<TArg1> current) {
             Current = current;
         }
 
         public InputDefinition<TArg1, TArg2> SecondParameter<TArg2>(
-            Tuple<Func<TArg2, bool>, string> arg2Predicate) {
+            IPredicateDefinition<TArg2> arg2Predicate) {
             return new InputDefinition<TArg1, TArg2>(
                 this,
                 arg2Predicate);
         }
 
         public OneArgContractDefinition<TArg1, TRes> Returns<TRes>(
-            Tuple<Func<TRes, bool>, string> resultPredicateWithDesc = null) {
+            IPredicateDefinition<TRes> resultPredicateWithDesc = null) {
             return new OneArgContractDefinition<TArg1, TRes>(
                 this,
-                resultPredicateWithDesc ?? Tuple.Create<Func<TRes, bool>, string>(
-                    res => true,
-                    string.Empty));
+                resultPredicateWithDesc ?? Predicates.AlwaysTrue<TRes>());
         }
 
         public OneArgVoidContractDefinition<TArg1> ReturnsVoid() {
@@ -49,17 +49,17 @@ namespace Codetracks.Core {
 
         public InputDefinition<TArg1> Parent { get; }
 
-        public readonly Tuple<Func<TArg2, bool>, string> Current;
+        public readonly IPredicateDefinition<TArg2> Current;
 
         public InputDefinition(
             InputDefinition<TArg1> parent,
-            Tuple<Func<TArg2, bool>, string> current) {
+            IPredicateDefinition<TArg2> current) {
             Parent = parent;
             Current = current;
         }
 
         public InputDefinition<TArg1, TArg2, TArg3> ThrirdParameter<TArg3>(
-            Tuple<Func<TArg3, bool>, string> arg3Predicate)
+            IPredicateDefinition<TArg3> arg3Predicate)
         {
             return new InputDefinition<TArg1, TArg2, TArg3>(
                 this,
@@ -67,12 +67,10 @@ namespace Codetracks.Core {
         }
 
         public TwoArgsContractDefinition<TArg1, TArg2, TRes> Returns<TRes>(
-            Tuple<Func<TRes, bool>, string> resultPredicateWithDesc = null) {
+            IPredicateDefinition<TRes> resultPredicateWithDesc = null) {
             return new TwoArgsContractDefinition<TArg1, TArg2, TRes>(
                 this,
-                resultPredicateWithDesc ?? Tuple.Create<Func<TRes, bool>, string>(
-                    res => true,
-                    string.Empty));
+                resultPredicateWithDesc ?? Predicates.AlwaysTrue<TRes>());
         }
 
         public TwoArgsVoidContractDefinition<TArg1, TArg2> ReturnsVoid() {
@@ -89,23 +87,21 @@ namespace Codetracks.Core {
 
         public InputDefinition<TArg1, TArg2> Parent { get; }
 
-        public readonly Tuple<Func<TArg3, bool>, string> Current;
+        public readonly IPredicateDefinition<TArg3> Current;
 
         public InputDefinition(
             InputDefinition<TArg1, TArg2> parent,
-            Tuple<Func<TArg3, bool>, string> current) {
+            IPredicateDefinition<TArg3> current) {
             Parent = parent;
             Current = current;
         }
 
         public ThreeArgsContractDefinition<TArg1, TArg2, TArg3, TRes> Returns<TRes>(
-            Tuple<Func<TRes, bool>, string> resultPredicateWithDesc = null)
+            IPredicateDefinition<TRes> resultPredicateWithDesc = null)
         {
             return new ThreeArgsContractDefinition<TArg1, TArg2, TArg3, TRes>(
                 this,
-                resultPredicateWithDesc ?? Tuple.Create<Func<TRes, bool>, string>(
-                    res => true,
-                    string.Empty));
+                resultPredicateWithDesc ?? Predicates.AlwaysTrue<TRes>());
         }
 
         public ThreeArgsVoidContractDefinition<TArg1, TArg2, TArg3> ReturnsVoid()

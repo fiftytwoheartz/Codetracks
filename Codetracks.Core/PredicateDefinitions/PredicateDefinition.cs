@@ -13,10 +13,6 @@ namespace Codetracks.Core.PredicateDefinitions {
             Description = description;
         }
 
-        public Tuple<Func<T, bool>, string> AsTuple => new Tuple<Func<T, bool>, string>(
-            _predicate,
-            Description);
-
         public IPredicateDefinition<T> And(
             IPredicateDefinition<T> predicateDefinition) {
             return new PredicateDefinition<T>(
