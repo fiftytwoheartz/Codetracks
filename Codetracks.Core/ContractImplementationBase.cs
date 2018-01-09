@@ -17,8 +17,8 @@ namespace Codetracks.Core {
         }
 
         /// <summary>
-        /// By conventions argIndex=0 means that the result of the method rather than the argument is validated.
-        /// As such there is no need to include argument's index in the message.
+        ///     By conventions argIndex=0 means that the result of the method rather than the argument is validated.
+        ///     As such there is no need to include argument's index in the message.
         /// </summary>
         /// <param name="argIndex"></param>
         /// <returns></returns>
@@ -31,17 +31,14 @@ namespace Codetracks.Core {
 
         private static string StringifyIndex(
             byte argIndex) {
-            if (argIndex == 1) {
+            if (argIndex == 1)
                 return "1st";
-            }
 
-            if (argIndex == 2) {
+            if (argIndex == 2)
                 return "2nd";
-            }
 
-            if (argIndex == 3) {
+            if (argIndex == 3)
                 return "3rd";
-            }
 
             return $"{argIndex}th";
         }

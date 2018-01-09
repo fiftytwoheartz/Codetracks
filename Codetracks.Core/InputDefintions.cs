@@ -1,6 +1,4 @@
-﻿using System;
-
-using Codetracks.Core.PredicateDefinitions;
+﻿using Codetracks.Core.PredicateDefinitions;
 
 namespace Codetracks.Core {
 
@@ -47,8 +45,6 @@ namespace Codetracks.Core {
 
     public class InputDefinition<TArg1, TArg2> {
 
-        public InputDefinition<TArg1> Parent { get; }
-
         public readonly IPredicateDefinition<TArg2> Current;
 
         public InputDefinition(
@@ -58,9 +54,10 @@ namespace Codetracks.Core {
             Current = current;
         }
 
+        public InputDefinition<TArg1> Parent { get; }
+
         public InputDefinition<TArg1, TArg2, TArg3> ThrirdParameter<TArg3>(
-            IPredicateDefinition<TArg3> arg3Predicate)
-        {
+            IPredicateDefinition<TArg3> arg3Predicate) {
             return new InputDefinition<TArg1, TArg2, TArg3>(
                 this,
                 arg3Predicate);
@@ -79,13 +76,11 @@ namespace Codetracks.Core {
 
     }
 
-    #endregion 
-    
+    #endregion
+
     #region TArg1, TArg2, TArg3
 
     public class InputDefinition<TArg1, TArg2, TArg3> {
-
-        public InputDefinition<TArg1, TArg2> Parent { get; }
 
         public readonly IPredicateDefinition<TArg3> Current;
 
@@ -96,16 +91,16 @@ namespace Codetracks.Core {
             Current = current;
         }
 
+        public InputDefinition<TArg1, TArg2> Parent { get; }
+
         public ThreeArgsContractDefinition<TArg1, TArg2, TArg3, TRes> Returns<TRes>(
-            IPredicateDefinition<TRes> resultPredicateWithDesc = null)
-        {
+            IPredicateDefinition<TRes> resultPredicateWithDesc = null) {
             return new ThreeArgsContractDefinition<TArg1, TArg2, TArg3, TRes>(
                 this,
                 resultPredicateWithDesc ?? Predicates.AlwaysTrue<TRes>());
         }
 
-        public ThreeArgsVoidContractDefinition<TArg1, TArg2, TArg3> ReturnsVoid()
-        {
+        public ThreeArgsVoidContractDefinition<TArg1, TArg2, TArg3> ReturnsVoid() {
             return new ThreeArgsVoidContractDefinition<TArg1, TArg2, TArg3>(this);
         }
 

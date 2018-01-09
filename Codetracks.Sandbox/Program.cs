@@ -11,6 +11,7 @@ namespace Codetracks.Sandbox {
 
             try {
                 Console.WriteLine("\r\n\r\nValid parameters:\r\n");
+
                 // curring is a free bonus:
                 // exception will be thrown at the same exact moment when wrong parameter appears
                 Console.WriteLine($"Sync addition: {usageExampleContract.AddIntegersMethodContract.Invoke(1)(1)}");
@@ -20,7 +21,7 @@ namespace Codetracks.Sandbox {
                 // works with async/await feature nicely: 
                 // all the predicates are evaluated synchronously,
                 // just the contract's implementation awaited
-                Console.WriteLine($"Async addition: {usageExampleContract.AddIntegersAsyncMethodContract.Invoke(1)(-1).Result}");
+                Console.WriteLine($"Async addition: {usageExampleContract.AddIntegersAsyncMethodContract.Invoke(1)(-1) .Result}");
             }
 
             // throws standard ArgumentException when contract violated

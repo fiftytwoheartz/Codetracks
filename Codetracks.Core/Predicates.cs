@@ -5,9 +5,23 @@ using Codetracks.Core.PredicateDefinitions;
 namespace Codetracks.Core {
 
     /// <summary>
-    /// Shorthand to a pretty standartd, widely-used predicates.
+    ///     Shorthand to a pretty standartd, widely-used predicates.
     /// </summary>
     public static class Predicates {
+
+        public static IPredicateDefinition<T> Define<T>(
+            Func<T, bool> func,
+            string description) {
+            return new PredicateDefinition<T>(
+                func,
+                description);
+        }
+
+        public static IPredicateDefinition<TRes> AlwaysTrue<TRes>() {
+            return new PredicateDefinition<TRes>(
+                res => true,
+                string.Empty);
+        }
 
         public static class Int32 {
 
@@ -21,15 +35,6 @@ namespace Codetracks.Core {
 
         }
 
-        public static IPredicateDefinition<T> Define<T>(Func<T, bool> func, string description)
-        {
-            return new PredicateDefinition<T>(func, description);
-        }
-
-        public static IPredicateDefinition<TRes> AlwaysTrue<TRes>() {
-            return new PredicateDefinition<TRes>(res => true, string.Empty);
-
-        }
-
     }
+
 }

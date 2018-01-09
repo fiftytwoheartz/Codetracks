@@ -35,8 +35,7 @@ namespace Codetracks.Core {
 
     }
 
-    public class OneArgContractImplementation<TArg1, TRes> : ContractImplementationBase
-    {
+    public class OneArgContractImplementation<TArg1, TRes> : ContractImplementationBase {
 
         private readonly IPredicateDefinition<TArg1> _arg1_predicateWithDesc;
 
@@ -47,16 +46,14 @@ namespace Codetracks.Core {
         internal OneArgContractImplementation(
             IPredicateDefinition<TArg1> arg1_predicateWithDesc,
             IPredicateDefinition<TRes> res_predicateWithDesc,
-            Func<TArg1, TRes> func)
-        {
+            Func<TArg1, TRes> func) {
             _arg1_predicateWithDesc = arg1_predicateWithDesc;
             _res_predicateWithDesc = res_predicateWithDesc;
             _func = func;
         }
 
         public TRes Invoke(
-            TArg1 arg1)
-        {
+            TArg1 arg1) {
             ValidatePredicateOrThrow(
                 1,
                 arg1,
