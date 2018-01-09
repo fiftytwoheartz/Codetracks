@@ -1,5 +1,7 @@
 ﻿using System;
 
+using Codetracks.Core.PredicateDefinitions;
+
 namespace Codetracks.Core {
 
     /// <summary>
