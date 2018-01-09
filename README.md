@@ -7,7 +7,7 @@ Code snippet:
 MethodContract
   .Define
 	.Takes(Predicates.Int32.Positive)
-  .Takes(Predicates.Int32.Positive)
+  	.Takes(Predicates.Int32.Positive)
 	.Returns(Predicates.Int32.Positive)
 	.Implement((leftValue, rightValue) => leftValue + rightValue)
 	.Invoke
