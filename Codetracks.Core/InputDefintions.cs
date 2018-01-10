@@ -47,14 +47,14 @@ namespace Codetracks.Core {
 
         public readonly PredicateDefinitionBase<TArg2> Current;
 
+        public readonly InputDefinition<TArg1> Parent;
+
         public InputDefinition(
             InputDefinition<TArg1> parent,
             PredicateDefinitionBase<TArg2> current) {
             Parent = parent;
             Current = current;
         }
-
-        public InputDefinition<TArg1> Parent { get; }
 
         public InputDefinition<TArg1, TArg2, TArg3> ThrirdParameter<TArg3>(
             PredicateDefinitionBase<TArg3> arg3Predicate) {
@@ -84,14 +84,14 @@ namespace Codetracks.Core {
 
         public readonly PredicateDefinitionBase<TArg3> Current;
 
+        public readonly InputDefinition<TArg1, TArg2> Parent;
+
         public InputDefinition(
             InputDefinition<TArg1, TArg2> parent,
             PredicateDefinitionBase<TArg3> current) {
             Parent = parent;
             Current = current;
         }
-
-        public InputDefinition<TArg1, TArg2> Parent { get; }
 
         public ThreeArgsContractDefinition<TArg1, TArg2, TArg3, TRes> Returns<TRes>(
             PredicateDefinitionBase<TRes> resultPredicateWithDesc = null) {

@@ -6,14 +6,14 @@ namespace Codetracks.Core.PredicateDefinitions {
 
         protected readonly Func<T, bool> _predicate;
 
+        public readonly string Description;
+
         protected PredicateDefinitionBase(
-            Func<T, bool> func,
+            Func<T, bool> predicate,
             string description) {
             Description = description;
-            _predicate = func;
+            _predicate = predicate;
         }
-
-        public string Description { get; }
 
         public abstract PredicateDefinitionBase<T> And(
             PredicateDefinitionBase<T> predicateDefinition);
@@ -24,7 +24,9 @@ namespace Codetracks.Core.PredicateDefinitions {
         public abstract PredicateDefinitionBase<T> Not();
 
         public bool Eval(
-            T parameter) => _predicate(parameter);
+            T parameter) {
+            return _predicate(parameter);
+        }
 
     }
 

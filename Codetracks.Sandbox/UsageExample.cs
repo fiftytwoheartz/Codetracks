@@ -9,14 +9,14 @@ namespace Codetracks.Sandbox {
         public UsageExample() {
             AddIntegersMethodContract =
                 MethodContract
-                    .Define
+                    .Define()
                     .FirstParameter(Predicates.Int32.Positive)
                     .SecondParameter(Predicates.Int32.Positive)
                     .Returns(Predicates.Int32.Positive)
                     .Implement(AddIntegers);
             AddIntegersAsyncMethodContract =
                 MethodContract
-                    .Define
+                    .Define()
                     .FirstParameter(Predicates.Int32.Positive)
                     .SecondParameter(Predicates.Int32.Positive)
                     .Returns<Task<int>>()

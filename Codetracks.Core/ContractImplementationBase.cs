@@ -7,19 +7,19 @@ namespace Codetracks.Core {
 
     public class ContractImplementationBase {
 
-		/// <summary>
-		/// [Conditional("DEBUG")] indicates that compiler should 
-		/// wipe out all calls to this method whenever project
-		/// was compiled under something different than "DEBUG". 
-		/// Good questions is how to make such a behavior more flexible, 
-		/// such that some custom compile symbols could be introduced as well? 
-		/// </summary>
-		/// <typeparam name="TArg"></typeparam>
-		/// <param name="argIndex"></param>
-		/// <param name="arg"></param>
-		/// <param name="predicate"></param>
-	    [Conditional("DEBUG")]
-		protected static void ValidatePredicateOrThrow<TArg>(
+        /// <summary>
+        ///     [Conditional("DEBUG")] indicates that compiler should
+        ///     wipe out all calls to this method whenever project
+        ///     was compiled under something different than "DEBUG".
+        ///     Good questions is how to make such a behavior more flexible,
+        ///     such that some custom compile symbols could be introduced as well?
+        /// </summary>
+        /// <typeparam name="TArg"></typeparam>
+        /// <param name="argIndex"></param>
+        /// <param name="arg"></param>
+        /// <param name="predicate"></param>
+        [Conditional("DEBUG")]
+        protected static void ValidatePredicateOrThrow<TArg>(
             byte argIndex,
             TArg arg,
             PredicateDefinitionBase<TArg> predicate) {
@@ -44,16 +44,16 @@ namespace Codetracks.Core {
 
         private static string StringifyIndex(
             byte argIndex) {
-            if (argIndex == 1)
-                return "1st";
-
-            if (argIndex == 2)
-                return "2nd";
-
-            if (argIndex == 3)
-                return "3rd";
-
-            return $"{argIndex}th";
+            switch (argIndex) {
+                case 1:
+                    return "1st";
+                case 2:
+                    return "2nd";
+                case 3:
+                    return "3rd";
+                default:
+                    return $"{argIndex}th";
+            }
         }
 
     }

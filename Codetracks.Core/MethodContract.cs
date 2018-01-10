@@ -8,8 +8,10 @@ namespace Codetracks.Core {
     /// </summary>
     public class MethodContract {
 
-        // Singleton.
-        public static MethodContract Define { get; } = new MethodContract();
+
+        public static MethodContract Define() {
+            return new MethodContract();
+        }
 
         public InputDefinition<TArg1> FirstParameter<TArg1>(
             PredicateDefinitionBase<TArg1> predicateWithDesc) {
