@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 using Codetracks.Core.PredicateDefinitions;
 
@@ -6,7 +7,19 @@ namespace Codetracks.Core {
 
     public class ContractImplementationBase {
 
-        protected static void ValidatePredicateOrThrow<TArg>(
+		/// <summary>
+		/// [Conditional("DEBUG")] indicates that compiler should 
+		/// wipe out all calls to this method whenever project
+		/// was compiled under something different than "DEBUG". 
+		/// Good questions is how to make such a behavior more flexible, 
+		/// such that some custom compile symbols could be introduced as well? 
+		/// </summary>
+		/// <typeparam name="TArg"></typeparam>
+		/// <param name="argIndex"></param>
+		/// <param name="arg"></param>
+		/// <param name="predicate"></param>
+	    [Conditional("DEBUG")]
+		protected static void ValidatePredicateOrThrow<TArg>(
             byte argIndex,
             TArg arg,
             PredicateDefinitionBase<TArg> predicate) {
